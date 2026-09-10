@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.shortcuts import render, get_object_or_404
 from .models import Projeto, Aluno
 
@@ -16,3 +17,8 @@ def detalhes_projeto(request, pk):
 def detalhes_aluno(request, pk):
     aluno = get_object_or_404(Aluno, pk=pk)
     return render(request, 'academico/detalhe_aluno.html', {'aluno': aluno})
+=======
+from django.shortcuts import render
+
+# Create your views here.
+>>>>>>> 81e1e188f90d3f158be305ee4b1d91f9c0c8b7a1
