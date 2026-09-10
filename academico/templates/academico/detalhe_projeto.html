@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ projeto.titulo }} — Detalhes do Projeto{% endblock %}
+
+{% block conteudo %}
+
+  <p class="page__meta">
+    <a href="{% url 'academico:lista' %}">&larr; voltar ao catálogo</a>
+  </p>
+
+  <div class="card">
+
+    <div class="ficha-header">
+      <div>
+        <h2>{{ projeto.titulo }}</h2>
+        <span class="selo">{{ projeto.categoria.nome }}</span>
+      </div>
+    </div>
+
+    <p class="ficha-descricao">{{ projeto.descricao }}</p>
+
+    <div class="ficha-secao">
+      <h3>Equipe do projeto</h3>
+
+      <ul class="equipe-lista">
+        {% for aluno in projeto.equipe.all %}
+          <li>
+            <a href="{% url 'academico:detalhes_aluno' pk=aluno.pk %}">{{ aluno.nome }}</a>
+          </li>
+        {% empty %}
+          <li class="equipe-vazia">Nenhum aluno vinculado a este projeto.</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+  </div>
+
+{% endblock %}

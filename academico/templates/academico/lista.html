@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block titulo %}Projetos — Catálogo{% endblock %}
+
+{% block conteudo %}
+
+  <h2 class="page__title">Todos os projetos</h2>
+  <p class="page__meta">{{ projetos|length }} projeto(s) cadastrado(s)</p>
+
+  <table class="catalog">
+    <thead>
+      <tr>
+        <th class="catalog__index">#</th>
+        <th>Título</th>
+        <th>Categoria</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for projeto in projetos %}
+        <tr>
+          <td class="catalog__index">{{ forloop.counter }}</td>
+          <td class="catalog__titulo">
+            <a href="{% url 'academico:detalhes_projeto' pk=projeto.pk %}">{{ projeto.titulo }}</a>
+          </td>
+          <td>
+            <span class="selo">{{ projeto.categoria.nome }}</span>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3" class="catalog__vazio">Nenhum projeto cadastrado ainda.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

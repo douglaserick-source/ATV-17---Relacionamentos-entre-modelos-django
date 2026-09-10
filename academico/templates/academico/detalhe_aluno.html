@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ aluno.nome }} — Detalhes do Aluno{% endblock %}
+
+{% block conteudo %}
+
+  <p class="page__meta">
+    <a href="javascript:history.back()">&larr; voltar</a>
+  </p>
+
+  <div class="card">
+
+    <div class="aluno-cabecalho">
+      <h2>{{ aluno.nome }}</h2>
+      <span class="matricula">matrícula {{ aluno.matricula }}</span>
+    </div>
+
+    <div class="ficha-secao">
+      <h3>Projetos em que participa</h3>
+
+      <ul class="projetos-lista">
+        {% for projeto in aluno.projeto_set.all %}
+          <li>
+            <a href="{% url 'academico:detalhes_projeto' pk=projeto.pk %}">{{ projeto.titulo }}</a>
+            <span class="selo">{{ projeto.categoria.nome }}</span>
+          </li>
+        {% empty %}
+          <li class="projetos-vazio">Este aluno ainda não integra nenhum projeto.</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+  </div>
+
+{% endblock %}
